@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="CSS\estilos.css">
 
 <?php
-$pokemon = '27';
+$pokemon = '35';
 
 $api = curl_init("https://pokeapi.co/api/v2/pokemon/$pokemon");
 curl_setopt($api, CURLOPT_SSL_VERIFYPEER, false);
