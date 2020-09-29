@@ -2,37 +2,31 @@
 <html>
 <title>POLI POKEDEX</title>
 <head>
-
-<link rel="stylesheet" href="CSS\estilos.css">
-
-<?php
-$pokemon = '25';
-
-$api = curl_init("https://pokeapi.co/api/v2/pokemon/$pokemon");
-curl_setopt($api, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($api, CURLOPT_RETURNTRANSFER, true);
-$response = curl_exec($api);
-curl_close($api);
-
-$json = json_decode($response);
-
-echo '<h2>HABILIDADES</h2>';
-foreach($json->abilities as $k => $v) {
-    echo $v->ability->name.'<br>';
-}
-
-echo '<h2>TIPO</h2>';
-echo $json->types[0]->type->name;
-
-echo '<h2>FOTOS</h2>';
-echo '<img src="'.$json->sprites->back_default.'" width="200">';
-echo '<img src="'.$json->sprites->front_default.'" width="200">';
-?>
-
+<meta charset="utf-8">
+<link rel="stylesheet" href="CSS/estilos.css">
+<link rel="icon" type="image/png" href="CSS/images/polipkdexlogo.png">
 </head>
-
-<body></body>
-
+<body>
+<div>
+  <div>
+    <div class="logodiv"><img src="CSS/images/polipkdexlogo.png" height="150"></div>
+    <div class="buscadordiv">
+      <form action="pkmon.php?" method="get">
+        <input type="search" placeholder="Busca tu Pokémon" class="Buscador" name="pkmon" pattern="[a-z]{3,10}"/>
+      </form>
+    </div>
+  </div>
+  <div class="principalDiv">
+    <?php
+    $a=1;
+    while ($a <= 380) {
+        //carga solo la imagen directamente de la url y se linkea por metodo get con pkmon.php
+        //enviando un numero para identificar el pokemon al clickearlo  y mostrar sus detalles
+        echo '<a href="pkmon.php?pkmon='.$a.'"><img class="btn" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'.$a.'.png" loading="lazy"></a>';
+        $a=$a+1;
+        }
+    ?>
+   </div>
+</div>
+</body>
 </html>
-
-
